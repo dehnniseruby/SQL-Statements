@@ -1,0 +1,102 @@
+--Joins
+--INNER JOIN
+--I want to combine customer and payment table
+
+select customer.customer_id,first_name, last_name, payment_id, payment.customer_id,amount
+from customer inner join payment
+on customer.customer_id = payment.customer_id;
+
+select c.customer_id,first_name, last_name, payment_id, p.customer_id,amount
+from customer as c inner join payment as p
+on c.customer_id = p.customer_id;
+
+
+--using left join
+select f.film_id, title, inventory_id, i.film_id
+from film as f left join inventory as i
+on f.film_id = i.film_id;
+
+
+select c.customer_id,first_name, last_name, payment_id, p.customer_id,amount
+from customer as c LEFT join payment as p
+on c.customer_id = p.customer_id;
+
+
+--RIGHT JOIN
+select f.film_id, title, inventory_id, i.film_id
+from film as f RIGHT join inventory as i
+on f.film_id = i.film_id;
+
+--GROUP
+
+select c.customer_id,first_name, last_name, P.payment_id, p.customer_id,amount
+from customer as c LEFT join payment as p
+on c.customer_id = p.PAYMENT_id
+GROUP BY C.CUSTOMER_ID, P.PAYMENT_ID
+ORDER BY FIRST_NAME ASC;
+
+
+--CREATING TABLES
+CREATE TABLE SALES2007Q1 (
+SALES_ID INT PRIMARY KEY, 
+NAME VARCHAR(50) NOT NULL,
+AMOUNT FLOAT NOT NULL
+);
+
+select * from sales2007q1;
+
+--delete tables
+--use drop table, tablename 
+drop table sales2007q1;
+
+--insert into tables
+insert into sales2007q1 (sales_id, name, amount)
+values
+('001', 'lovelyn', '15000.25'),
+('002', 'Wasiu', '132000'),
+('003', 'Toyosi', '144000');
+
+
+
+--creating sales2007q2
+
+CREATE TABLE SALES2007Q2 (
+SALES_ID INT PRIMARY KEY, 
+NAME VARCHAR(50) NOT NULL,
+AMOUNT FLOAT NOT NULL
+);
+
+
+insert into sales2007q2 (sales_id, name, amount)
+values
+('001', 'lovelyn', '178000.25'),
+('002', 'Wasiu', '166000'),
+('003', 'Toyosi', '900000.70'),
+('004', 'Fisayo', '100000.70'),
+('005', 'Busayo', '200009.70')
+;
+
+select * from sales2007q2;
+
+
+--UNION
+select * from sales2007q1
+UNION
+select * from sales2007q2;
+
+select sales_id, name from sales2007q1
+UNION
+select sales_id, name from sales2007q2;
+
+
+
+--UNION ALL
+select * from sales2007q1
+UNION ALL
+select * from sales2007q2;
+
+
+select sales_id, name from sales2007q1
+UNION ALL
+select sales_id, name from sales2007q2;
+
